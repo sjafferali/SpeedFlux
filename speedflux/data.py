@@ -49,7 +49,7 @@ def pingtest():
         pingtest = ping(target, verbose=False, timeout=1, count=1, size=128)
         data = [
             {
-                'measurement': 'pings',
+                'measurement': 'speedflux_pings',
                 'time': timestamp,
                 'tags': {
                     'target': target
