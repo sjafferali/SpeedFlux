@@ -11,7 +11,7 @@ class Influx:
         self.config = config
         self._client = None
         self.retries = 0
-        self.init_db()
+        # self.init_db()
 
     @property
     def client(self):
@@ -57,7 +57,7 @@ class Influx:
     def format_data(self, data):
         influx_data = [
             {
-                'measurement': 'ping',
+                'measurement': 'speedflux_ping',
                 'time': data['timestamp'],
                 'fields': {
                     'jitter': data['ping'].get('jitter', 0),
@@ -65,7 +65,7 @@ class Influx:
                 }
             },
             {
-                'measurement': 'download',
+                'measurement': 'speedflux_download',
                 'time': data['timestamp'],
                 'fields': {
                     # Byte to Megabit
@@ -75,7 +75,7 @@ class Influx:
                 }
             },
             {
-                'measurement': 'upload',
+                'measurement': 'speedflux_upload',
                 'time': data['timestamp'],
                 'fields': {
                     # Byte to Megabit
@@ -85,14 +85,14 @@ class Influx:
                 }
             },
             {
-                'measurement': 'packetLoss',
+                'measurement': 'speedflux_packetLoss',
                 'time': data['timestamp'],
                 'fields': {
                     'packetLoss': int(data.get('packetLoss', 0))
                 }
             },
             {
-                'measurement': 'speeds',
+                'measurement': 'speedflux_speeds',
                 'time': data['timestamp'],
                 'fields': {
                     'jitter': data['ping'].get('jitter', 0),
